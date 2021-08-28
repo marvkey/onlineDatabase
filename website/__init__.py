@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
-from userData import User
 db = SQLAlchemy()
 DB_NAME  = "UserDatabase.db"
 def create_app():
@@ -15,9 +14,14 @@ def create_app():
 
     from .auth import auth
     app.register_blueprint(auth,url_prefix="/")
+
+    from .userData import User
+
+    create_database(app)
     login_manager = LoginManager()
     login_manager.login_view = "auth.login"# trying to acces a page that needs to be login redirect to auth.login()
     login_manager.init_app(app)
+
 
     @login_manager.user_loader # stores the id of the user that login so we use id to acces the user
     def load_user(id):
