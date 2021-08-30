@@ -22,7 +22,6 @@ def login():
             flash("email is not valid",category='error')
     return render_template("login.html",user=current_user)#letting us use user in base template
 
-    return render_template("login.html",user=current_user)
 
 
 @auth.route("/signup",methods=["GET","POST"])
@@ -55,11 +54,10 @@ def signup():
             login_user(new_user,remember=False)
             flash("User Created",category='success')
             return redirect(url_for('views.home'))
-
-
     return render_template("signUp.html",user=current_user)
 @auth.route("/logout")
 @login_required # only access the page when logged in
 def logout():
     logout_user()
     return redirect(url_for("views.home"))
+
