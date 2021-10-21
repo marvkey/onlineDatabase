@@ -8,7 +8,8 @@ views = Blueprint("views",__name__)
 @views.route("/")
 @views.route("/home",methods=["GET","POST"])
 def home():
-    return render_template("home.html",user=current_user)
+    files=SavedItem.query.all()
+    return render_template("home.html",user=current_user,files=files)
 
 
 @views.route('/upload', methods = ['GET', 'POST'])
