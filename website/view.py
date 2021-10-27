@@ -1,5 +1,5 @@
 from website import auth
-from flask import Blueprint,render_template,flash,request,redirect,url_for,Flask
+from flask import Blueprint,render_template,flash,request,redirect,url_for,Flask,send_file
 from flask_login import login_required, current_user
 from io import StringIO
 from . import db
@@ -22,3 +22,10 @@ def upload():
         flash(f"file loaded:{file.filename}",category='success')
     return render_template("create_file.html",user=current_user)
 
+@views.route('/download/<file>', methods = ['POST','GET'])
+def download(file):
+    #file = request.files['file']
+    #file.filename
+     
+   # string = 
+    return redirect(url_for("views.home"))

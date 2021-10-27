@@ -4,7 +4,7 @@
         {% if user.id == file.author %}
             <div class="files ">
                 <button>
-                    <b>{{file.name}}</b>
+                    <a href="/download/{{file.file}}"> {{file.name}} </a>
                 </button>
             </div>
         {% endif %}
